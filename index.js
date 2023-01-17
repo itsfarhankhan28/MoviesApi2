@@ -8,6 +8,9 @@ app.get('/',(req,res)=>{
 app.get('/about',(req,res)=>{
     res.send('This is the about')
 })
+app.get('/contact',(req,res)=>{
+    res.send('This is the contact')
+})
 
 app.listen(port , ()=>{
     console.log("listening to port 5000")
