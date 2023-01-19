@@ -1,15 +1,16 @@
 const express = require('express')
 const app = express()
-const port = 5000   
+const port = 5000
 
-app.get('/',(req,res)=>{
-    res.send('This is the homepage')
-})
-app.get('/about',(req,res)=>{
-    res.send('This is the about')
-})
-app.get('/contact',(req,res)=>{
-    res.send('This is the contact')
+app.use(express.json())
+
+require('./db/conn')
+const Movies = require('./models/schema')
+
+app.post('/movies',async(req,res)=>{
+    const movies = new Movies(req.body)
+    const Newmovies = await movies.save()
+    console.log(Newmovies)
 })
 
 app.listen(port , ()=>{
